@@ -10,9 +10,15 @@ import java.util.List;
 @Service
 public class BookService implements IBookService
 {
-    @Autowired
+
     public BookRepo br;
 
+    @Autowired
+    public BookService(BookRepo br) {
+        this.br = br;
+    }
+
+    // User story 2: As a user, I can view all Items
     @Override
     public List<Book> findAllBooks()
     {
@@ -22,6 +28,11 @@ public class BookService implements IBookService
     public Book findBookById(int id)
     {
         return br.findById(id).get();
+    }
+    
+    // User story 4: As a user, I can update an Item (Change the name or other properties)
+    public Book updateBook(Book b) {
+        return br.save(b);
     }
 
     @Override
