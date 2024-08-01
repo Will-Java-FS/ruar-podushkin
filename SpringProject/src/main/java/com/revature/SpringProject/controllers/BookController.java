@@ -23,13 +23,21 @@ public class BookController
     @PostMapping
     public ResponseEntity<Book> addBook(@RequestBody Book book)
     {
-        return new ResponseEntity<>(bs.addBook(book), HttpStatus.OK); // Book inserted
+        if(book != null)
+            return new ResponseEntity<>(bs.addBook(book), HttpStatus.OK); // Book inserted
+
+        return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST); // Bad object
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Book> getBookById(@PathVariable("id") int id)
     {
-        return new ResponseEntity<>(bs.findBookById(id), HttpStatus.OK);
+        Book foundBook = bs.findBookById(id);
+
+        if(foundBook != null)
+            return new ResponseEntity<>(foundBook, HttpStatus.OK);
+
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
     @DeleteMapping("/{id}")
