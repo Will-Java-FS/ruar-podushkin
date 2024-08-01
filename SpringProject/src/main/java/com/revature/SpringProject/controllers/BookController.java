@@ -22,4 +22,16 @@ public class BookController
     {
         return new ResponseEntity<>(bs.addBook(book), HttpStatus.OK); // Book inserted
     }
+
+    @GetMapping
+    public List<Book> getAllBooks() {
+        return bs.findAllBooks();
+    }
+
+    @PutMapping
+    public Book updateBook(@RequestBody Book book) {
+        return bs.updateBook(book);
+    }
+
+
 }
