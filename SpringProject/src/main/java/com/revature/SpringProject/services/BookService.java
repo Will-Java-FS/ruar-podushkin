@@ -26,7 +26,7 @@ public class BookService implements IBookService
     }
 
     // User story 4: As a user, I can update an Item (Change the name or other properties)
-    public Book updateBook(Book b) {;
+    public Book updateBook(Book b) {
         return br.save(b);
     }
 
