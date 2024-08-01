@@ -27,12 +27,16 @@ public class BookService implements IBookService
 
     public Book findBookById(int id)
     {
-        return br.findById(id).get();
+        return br.findById(id).orElse(null);
     }
     
     // User story 4: As a user, I can update an Item (Change the name or other properties)
     public Book updateBook(Book b) {
-        return br.save(b);
+        if (!isValidBook(b)) {
+            return null;
+        } else {
+                return br.save(b);
+        }
     }
 
     @Override
@@ -44,6 +48,10 @@ public class BookService implements IBookService
     public void deleteBook(int id)
     {
         br.deleteById(id);
+    }
+
+    private boolean isValidBook(Book b) {
+        return (b != null && b.getTitle() != null && b.getAuthor() != null);
     }
 
 }

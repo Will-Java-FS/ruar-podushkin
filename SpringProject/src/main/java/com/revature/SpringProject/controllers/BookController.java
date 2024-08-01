@@ -29,7 +29,12 @@ public class BookController
     @GetMapping("/{id}")
     public ResponseEntity<Book> getBookById(@PathVariable("id") int id)
     {
-        return new ResponseEntity<>(bs.findBookById(id), HttpStatus.OK);
+        Book b = bs.findBookById(id);
+        if (b == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(bs.findBookById(id), HttpStatus.OK);
+        }
     }
 
     @DeleteMapping("/{id}")
@@ -46,6 +51,11 @@ public class BookController
 
     @PutMapping
     public ResponseEntity<Book>  updateBook(@RequestBody Book book) {
-        return new ResponseEntity<>(bs.updateBook(book), HttpStatus.OK);
+        Book b = bs.updateBook(book);
+        if (b == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } else {
+            return new ResponseEntity<>(bs.updateBook(book), HttpStatus.OK);
+        }
     }
 }
