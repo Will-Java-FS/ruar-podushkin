@@ -25,6 +25,11 @@ public class BookService implements IBookService
         return br.findAll();
     }
 
+    public Book findBookById(int id)
+    {
+        return br.findById(id).get();
+    }
+    
     // User story 4: As a user, I can update an Item (Change the name or other properties)
     public Book updateBook(Book b) {
         return br.save(b);
@@ -35,4 +40,10 @@ public class BookService implements IBookService
     {
         return br.save(book);
     }
+
+    public void deleteBook(int id)
+    {
+        br.deleteById(id);
+    }
+
 }

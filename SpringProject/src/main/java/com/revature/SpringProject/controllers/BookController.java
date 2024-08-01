@@ -2,6 +2,10 @@ package com.revature.SpringProject.controllers;
 
 import com.revature.SpringProject.models.Book;
 import com.revature.SpringProject.services.BookService;
+
+import jakarta.websocket.server.PathParam;
+import org.apache.coyote.Response;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +26,20 @@ public class BookController
         return new ResponseEntity<>(bs.addBook(book), HttpStatus.OK); // Book inserted
     }
 
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Book> getBookById(@PathVariable int id)
+    {
+        return new ResponseEntity<>(bs.findBookById(id), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Book> deleteBook(@PathVariable int id)
+    {
+        bs.deleteBook(id);
+        return new ResponseEntity<>(null, HttpStatus.OK);
+    }
+  
     @GetMapping
     public List<Book> getAllBooks() {
         return bs.findAllBooks();
@@ -31,6 +49,4 @@ public class BookController
     public Book updateBook(@RequestBody Book book) {
         return bs.updateBook(book);
     }
-
-
 }
