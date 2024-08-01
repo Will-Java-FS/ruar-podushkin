@@ -26,27 +26,26 @@ public class BookController
         return new ResponseEntity<>(bs.addBook(book), HttpStatus.OK); // Book inserted
     }
 
-
     @GetMapping("/{id}")
-    public ResponseEntity<Book> getBookById(@PathVariable int id)
+    public ResponseEntity<Book> getBookById(@PathVariable("id") int id)
     {
         return new ResponseEntity<>(bs.findBookById(id), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Book> deleteBook(@PathVariable int id)
+    public ResponseEntity<Book> deleteBook(@PathVariable("id") int id)
     {
         bs.deleteBook(id);
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
   
     @GetMapping
-    public List<Book> getAllBooks() {
-        return bs.findAllBooks();
+    public ResponseEntity<List<Book>> getAllBooks() {
+        return new ResponseEntity<>(bs.findAllBooks(), HttpStatus.OK);
     }
 
     @PutMapping
-    public Book updateBook(@RequestBody Book book) {
-        return bs.updateBook(book);
+    public ResponseEntity<Book>  updateBook(@RequestBody Book book) {
+        return new ResponseEntity<>(bs.updateBook(book), HttpStatus.OK);
     }
 }
