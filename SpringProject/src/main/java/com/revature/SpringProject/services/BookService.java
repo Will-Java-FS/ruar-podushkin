@@ -19,9 +19,15 @@ public class BookService implements IBookService
         return br.findAll();
     }
 
+    public Book findBookById(int id)
+    {
+        return br.findById(id).get();
+    }
+
     @Override
     public Book addBook(Book book)
     {
         return br.save(book);
     }
+
 }
