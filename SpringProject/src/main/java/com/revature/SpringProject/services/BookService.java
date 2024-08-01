@@ -30,4 +30,9 @@ public class BookService implements IBookService
         return br.save(book);
     }
 
+    public void deleteBook(int id)
+    {
+        br.deleteById(id);
+    }
+
 }

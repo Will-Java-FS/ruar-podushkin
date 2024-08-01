@@ -29,4 +29,11 @@ public class BookController
     {
         return new ResponseEntity<>(bs.findBookById(id), HttpStatus.OK);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Book> deleteBook(@PathVariable int id)
+    {
+        bs.deleteBook(id);
+        return new ResponseEntity<>(null, HttpStatus.OK);
+    }
 }
