@@ -1,9 +1,13 @@
 package com.revature.SpringProject.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Table(name="accounts")
@@ -25,4 +29,8 @@ public class Account
 
     @Column(nullable = false)
     private String email;
+
+    @OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private List<Book> books;
 }
