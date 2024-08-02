@@ -25,6 +25,7 @@ public class BookService implements IBookService
         return br.findAll();
     }
 
+    // User story 3 As a user, I can view Item by its ID
     public Book findBookById(int id)
     {
         return br.findById(id).orElse(null);
@@ -39,17 +40,20 @@ public class BookService implements IBookService
         }
     }
 
+    // User story 1: As a user, I can create a new Item
     @Override
     public Book addBook(Book book)
     {
         return br.save(book);
     }
 
+    // User story 5: As a user, I can delete an Item
     public void deleteBook(int id)
     {
         br.deleteById(id);
     }
 
+    // Local method to check if a book is valid or not
     private boolean isValidBook(Book b) {
         return (b != null && b.getTitle() != null && b.getAuthor() != null);
     }

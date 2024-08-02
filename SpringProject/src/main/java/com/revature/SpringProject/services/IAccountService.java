@@ -5,4 +5,6 @@ import com.revature.SpringProject.models.Account;
 public interface IAccountService
 {
     public Account findAccountById(int id);
+    public Account createAccount(Account account);
+    public Account findByUsernameAndByPassword(String username, String password);
 }

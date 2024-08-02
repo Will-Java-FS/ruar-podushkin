@@ -20,6 +20,7 @@ public class BookController
     @Autowired
     BookService bs;
 
+    // Post endpoint to add a new book to the database
     @PostMapping
     public ResponseEntity<Book> addBook(@RequestBody Book book)
     {
@@ -29,6 +30,7 @@ public class BookController
         return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST); // Bad object
     }
 
+    // Get endpoint to retrieve a book by its id
     @GetMapping("/{id}")
     public ResponseEntity<Book> getBookById(@PathVariable("id") int id)
     {
@@ -40,18 +42,21 @@ public class BookController
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
+    // Delete endpoint that allows a user to delete a book by its id
     @DeleteMapping("/{id}")
     public ResponseEntity<Book> deleteBook(@PathVariable("id") int id)
     {
         bs.deleteBook(id);
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
-  
+
+    // Get endpoint that allows users to get all books
     @GetMapping
     public ResponseEntity<List<Book>> getAllBooks() {
         return new ResponseEntity<>(bs.findAllBooks(), HttpStatus.OK);
     }
 
+    // Put endpoint that allows a user to update an existing book's data
     @PutMapping
     public ResponseEntity<Book>  updateBook(@RequestBody Book book) {
         Book b = bs.updateBook(book);
