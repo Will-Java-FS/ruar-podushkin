@@ -38,13 +38,6 @@ public class BookController
             return new ResponseEntity<>(foundBook, HttpStatus.OK);
 
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-
-        Book b = bs.findBookById(id);
-        if (b == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else {
-            return new ResponseEntity<>(bs.findBookById(id), HttpStatus.OK);
-        }
     }
 
     @DeleteMapping("/{id}")
