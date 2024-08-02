@@ -5,10 +5,7 @@ import com.revature.SpringProject.services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/accounts")
@@ -24,6 +21,25 @@ public class AccountController
 
         if(account != null)
             return new ResponseEntity<>(account, HttpStatus.OK);
+
+        return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping("/login")
+    public ResponseEntity<Account> logIn(@RequestParam String username, @RequestParam String password)
+    {
+        Account account = as.findByUsernameAndByPassword(username, password);
+        if(account != null)
+            return new ResponseEntity<>(account, HttpStatus.OK);
+
+        return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+    }
+
+    @PostMapping
+    public ResponseEntity<Account> createAccount(@RequestBody Account account)
+    {
+        if(account != null)
+            return new ResponseEntity<>(as.createAccount(account), HttpStatus.OK);
 
         return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }
