@@ -14,6 +14,8 @@ public class AccountController
     @Autowired
     AccountService as;
 
+
+     // Get endpoint to retrieve an account by a given id
     @GetMapping("/{id}")
     public ResponseEntity<Account> findAccountById(@PathVariable("id") int id)
     {
@@ -25,6 +27,7 @@ public class AccountController
         return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }
 
+    // Get endpoint that takes in 2 parameters to log the user in and return their account object
     @GetMapping("/login")
     public ResponseEntity<Account> logIn(@RequestParam String username, @RequestParam String password)
     {
@@ -35,6 +38,7 @@ public class AccountController
         return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }
 
+    // Post endpoint that allows a user to create a new account
     @PostMapping
     public ResponseEntity<Account> createAccount(@RequestBody Account account)
     {
