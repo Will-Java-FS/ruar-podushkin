@@ -18,7 +18,7 @@ public class AccountController
     AccountService as;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Account> findAccountById(@PathVariable int id)
+    public ResponseEntity<Account> findAccountById(@PathVariable("id") int id)
     {
         Account account = as.findAccountById(id);
 

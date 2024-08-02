@@ -27,7 +27,7 @@ public class BookService implements IBookService
 
     public Book findBookById(int id)
     {
-        return br.findById(id).orElseGet(null);
+        return br.findById(id).orElse(null);
     }
     
     // User story 4: As a user, I can update an Item (Change the name or other properties)

@@ -32,7 +32,6 @@ public class Book
     @Column(name="available_copies")
     private int availableCopies;
 
-    // WASNT WORKING - 8/1
     @ManyToOne(fetch = FetchType.EAGER)
     @JsonBackReference
     @JoinColumn(name="accounts_fk", nullable = false)
