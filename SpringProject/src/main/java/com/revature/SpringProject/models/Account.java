@@ -30,6 +30,8 @@ public class Account
     @Column(nullable = false)
     private String email;
 
+    private String role;
+
     @OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<Book> books;

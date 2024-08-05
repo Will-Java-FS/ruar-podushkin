@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/accounts")
 public class AccountController
@@ -17,12 +19,12 @@ public class AccountController
 
      // Get endpoint to retrieve an account by a given id
     @GetMapping("/{id}")
-    public ResponseEntity<Account> findAccountById(@PathVariable("id") int id)
+    public ResponseEntity<List<Account>> findAccountById(@PathVariable("id") int id)
     {
-        Account account = as.findAccountById(id);
+        List<Account> accountList = as.findAccountById(id);
 
-        if(account != null)
-            return new ResponseEntity<>(account, HttpStatus.OK);
+        if(accountList != null)
+            return new ResponseEntity<>(accountList, HttpStatus.OK);
 
         return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }
