@@ -26,6 +26,8 @@ public class AccountService implements IAccountService
         Account account = ar.findById(id).orElse(null); // getting the account
 
         // If the account under that id was an admin, return all entities in the database (all users)
+        if(account == null)
+            return null;
         if(account.getRole().equals("admin"))
             return ar.findAll();
 
