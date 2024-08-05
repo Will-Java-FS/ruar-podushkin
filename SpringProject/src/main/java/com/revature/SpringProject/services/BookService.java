@@ -36,7 +36,7 @@ public class BookService implements IBookService
         if (!isValidBook(b)) {
             return null;
         } else {
-                return br.save(b);
+            return br.save(b);
         }
     }
 

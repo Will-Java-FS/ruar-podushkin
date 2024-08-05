@@ -29,7 +29,7 @@ public class AccountController
 
     // Get endpoint that takes in 2 parameters to log the user in and return their account object
     @GetMapping("/login")
-    public ResponseEntity<Account> logIn(@RequestParam String username, @RequestParam String password)
+    public ResponseEntity<Account> logIn(@RequestParam("username") String username, @RequestParam("password") String password)
     {
         Account account = as.findByUsernameAndByPassword(username, password);
         if(account != null)
