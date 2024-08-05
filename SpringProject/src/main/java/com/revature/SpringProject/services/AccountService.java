@@ -8,8 +8,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class AccountService implements IAccountService
 {
-    @Autowired
     AccountRepo ar;
+
+    @Autowired
+    public AccountService(AccountRepo ar)
+    {
+        this.ar = ar;
+    }
 
     // User story 8: As a user, I can view the Items associated with my account
     @Override
